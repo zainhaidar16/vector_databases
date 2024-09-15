@@ -35,14 +35,15 @@ def connect_to_my_db() -> WeaviateClient:
 
     client = weaviate.connect_to_wcs(
         # Your Weaviate URL - Edit this to match your own Weaviate instance
-        cluster_url="<YOUR_WEAVIATE_URL>",
+        cluster_url=os.getenv("WEAVIATE_URL"),
 
         # Your Weaviate API Key - Edit this to match your own Weaviate instance
-        auth_credentials=weaviate.auth.AuthApiKey("<YOUR_WEAVIATE_API_KEY>"),
+        auth_credentials=weaviate.auth.AuthApiKey("WEAVIATE_API_KEY"),
 
         # OpenAI API key for queries that require it
         # Edit this to provide your own
-        headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
+        headers={"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")},
+        #headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
     )
 
     # # Or use a local instance - e.g. with Docker
