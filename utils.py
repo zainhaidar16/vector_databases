@@ -27,33 +27,6 @@ def connect_to_demo_db() -> WeaviateClient:
     
 
 
-def connect_to_my_db() -> WeaviateClient:
-    """
-    Helper function to connect to your own Weaviate instance.
-    To be used for data loading as well as queries.
-    """
-
-    client = weaviate.connect_to_wcs(
-        # Your Weaviate URL - Edit this to match your own Weaviate instance
-        cluster_url=os.getenv("WEAVIATE_URL"),
-
-        # Your Weaviate API Key - Edit this to match your own Weaviate instance
-        auth_credentials=weaviate.auth.AuthApiKey("WEAVIATE_API_KEY"),
-
-        # OpenAI API key for queries that require it
-        # Edit this to provide your own
-        headers={"X-Cohere-Api-Key": os.getenv("COHERE_APIKEY")},
-        #headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")},
-    )
-
-    # # Or use a local instance - e.g. with Docker
-    # client = weaviate.connect_to_local(
-    #     headers={"X-OpenAI-Api-Key": os.getenv("OPENAI_APIKEY")}
-    # )
-
-    return client
-
-
 def main():
 
     # Connect to Weaviate
